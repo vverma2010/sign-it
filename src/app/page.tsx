@@ -6,7 +6,7 @@ import SignatureCanvas from "react-signature-canvas";
 import toast, { Toaster } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import {
-  DrawerTrigger,
+  // DrawerTrigger,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
@@ -43,11 +43,11 @@ export default function Home() {
       toast.error("Please provide a signature");
       return;
     }
-    setOpen(!open);
     const output = signatureRef.current
       ?.getTrimmedCanvas()
       .toDataURL("image/png");
     setSignature(output || null);
+    setOpen(true);
   };
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export default function Home() {
           <div className="flex justify-between w-10/12 md:w-full gap-2 md:gap-5 mt-5">
             <Dialog open={colorPickerOpen} onOpenChange={setColorPickerOpen}>
               <DialogTrigger asChild>
-                <Button className="sm:w-auto bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 flex items-center gap-2 text-white font-semibold">
+                <Button className="sm:w-auto bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 flex items-center gap-2 text-white font-semibold cursor-pointer">
                   <Palette size={18} /> {isDesktop && "Select Color"}
                 </Button>
               </DialogTrigger>
@@ -125,7 +125,7 @@ export default function Home() {
               </DialogContent>
             </Dialog>
             <Button
-              className=" sm:w-auto bg-amber-500 hover:bg-amber-700 flex items-center gap-2 text-white font-semibold"
+              className=" sm:w-auto bg-amber-500 hover:bg-amber-700 flex items-center gap-2 text-white font-semibold cursor-pointer"
               onClick={() => {
                 signatureRef.current?.clear();
                 setSignature(null);
@@ -136,7 +136,7 @@ export default function Home() {
 
             {/* Preview Button */}
             <Button
-              className="flex-grow sm:w-auto bg-emerald-500 hover:bg-emerald-700 flex items-center gap-2 text-white font-semibold"
+              className="flex-grow sm:w-auto bg-emerald-500 hover:bg-emerald-700 flex items-center gap-2 text-white font-semibold cursor-pointer"
               onClick={handleSaveSignature}
             >
               <Eye size={18} /> Preview
@@ -145,9 +145,9 @@ export default function Home() {
             {signature &&
               (isDesktop ? (
                 <Dialog open={open} onOpenChange={setOpen}>
-                  <DialogTrigger asChild>
+                  {/* <DialogTrigger asChild>
                     <Button className="hidden" />
-                  </DialogTrigger>
+                  </DialogTrigger> */}
                   <DialogContent className="sm:max-w-[625px]">
                     <DialogHeader>
                       <DialogTitle>Preview Signature</DialogTitle>
@@ -176,9 +176,9 @@ export default function Home() {
                 </Dialog>
               ) : (
                 <Drawer open={open} onOpenChange={setOpen}>
-                  <DrawerTrigger asChild>
+                  {/* <DrawerTrigger asChild>
                     <Button className="hidden" />
-                  </DrawerTrigger>
+                  </DrawerTrigger> */}
                   <DrawerContent>
                     <DrawerHeader className="text-left">
                       <DrawerTitle>Preview Signature</DrawerTitle>
