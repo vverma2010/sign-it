@@ -39,21 +39,14 @@ export default function Home() {
   const [colorPickerOpen, setColorPickerOpen] = useState<boolean>(false);
 
   const handleSaveSignature = (): void => {
-    if (!signatureRef.current || typeof signatureRef.current.getTrimmedCanvas !== "function") {
-      toast.error("Signature capture failed. Please try again.");
-      return;
-    }
-  
-    if (signatureRef.current.isEmpty()) {
+    if (signatureRef.current?.isEmpty()) {
       toast.error("Please provide a signature");
       return;
     }
-  
-    const output = signatureRef.current.getTrimmedCanvas()?.toDataURL("image/png");
+    const output = signatureRef.current?.getCanvas().toDataURL("image/png");
     setSignature(output || null);
     setOpen(true);
   };
-  
 
   useEffect(() => {
     // Function to update canvas size dynamically
