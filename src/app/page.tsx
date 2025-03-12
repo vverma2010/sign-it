@@ -28,6 +28,7 @@ import Image from "next/image";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { HexColorPicker } from "react-colorful";
 import { Download, Eye, Palette, Trash2 } from "lucide-react";
+import { Footer } from "@/components/footer/Footer";
 
 export default function Home() {
   const [signature, setSignature] = useState<string | null>(null);
@@ -43,9 +44,7 @@ export default function Home() {
       toast.error("Please provide a signature");
       return;
     }
-    const output = signatureRef.current
-      ?.getTrimmedCanvas()
-      .toDataURL("image/png");
+    const output = signatureRef.current?.getCanvas().toDataURL("image/png");
     setSignature(output || null);
     setOpen(true);
   };
@@ -74,11 +73,11 @@ export default function Home() {
         <h1 className="text-center text-4xl mt-20">
           Welcome to{" "}
           <span className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
-            Signit
+            SwiftSign
           </span>
         </h1>
         <p className="text-center mt-5">
-          Signit is a digital signature platform that allows you to create your
+          SwiftSign is a digital signature platform that allows you to create your
           digital Signatures.
         </p>
 
@@ -214,6 +213,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer/>
       <Toaster position="top-center" />
       {/* {preview} */}
     </div>

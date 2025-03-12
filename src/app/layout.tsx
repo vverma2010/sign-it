@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Signit",
-  description: "Signit is a digital signature platform that allows you to create your digital Signatures.",
+  title: "SwiftSign",
+  description: "SwiftSign is a digital signature platform that allows you to create your digital Signatures.",
 };
 
 export default function RootLayout({
